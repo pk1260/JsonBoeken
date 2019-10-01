@@ -13,37 +13,48 @@ xmlhttp.send();
 
 //Tabel
 const maakTabelKop = (arr) => {
-    let kop = "<table><tr>";
+    let kop = "<table class='boekSelectie'><tr>";
     arr.forEach((item) => {
-        kop += "<th>" + item + "</th>"
+        kop += "<th>" + item + "</th>";
     });
-    kop += "<tr>";
+    kop += "</tr>";
     return kop;
 };
 
-const maakTabelRij = (arr) => {
-    let rij = "<tr>";
+const maakTabelRij = (arr, accent) => {
+    let rij = "";
+    if (accent == true) {
+        rij = "<tr class='boekSelectie__rij--accent'>";
+    } else {
+        rij = "<tr class='boekSelectie__rij'>";
+    }
     arr.forEach((item) => {
-        rij += "<td>" + item + "</td>"
+        rij += "<td class='boekSelectie__data-cel'>" + item + "</td>";
     });
-    rij += "<tr>";
+    rij += "</tr>";
     return rij;
 };
 
 //Object
+//Eigenschappen object: Data
+//Method:               Sorteren() en Uitvoeren()
 let sorteerBoekObj = {
     data: "",
+    kenmerk: "titel",
 
     sorteren: function() {
-        this.data.sort( (a,b) => a.titel > b.titel ? 1 : -1)
+        this.data.sort( (a,b) => a[this.kenmerk] > b[this.kenmerk] ? 1 : -1);
         this.uitvoeren(this.data);
     },
 
     uitvoeren: function (data) {
-        let uitvoer = maakTabelKop(["titel", "auteur(s)", "cover", "uitgave", "bladzijde", "taal", "ean"]);
+        let uitvoer = maakTabelKop(["titel", "auteur(s)", "cover", "uitgave", "bladzijden", "taal", "ean"]);
+
         for(let i=0; i<data.length; i++) {
-            let imgElement = "<img src='" + data[i].cover + "' width=100>'" + data[i].titel;
-            uitvoer += maakTabelRij([data[i].titel, data[i].titel, imgElement, data[i].uitgave, data[i].bladzijde, data[i].taal, data[i].ean]);
+            let accent = false;
+            i%2 == 0 ? accent = true : accent = false;
+            let imgElement = "<img src='" + data[i].cover + "' class='boekSelectie__cover' '" + data[i].titel + "'>";
+            uitvoer += maakTabelRij([data[i].titel, data[i].auteur[0], imgElement, data[i].uitgave, data[i].paginas, data[i].taal, data[i].ean], accent);
         }
 
         document.getElementById('uitvoer').innerHTML = uitvoer
