@@ -3,8 +3,14 @@ document.getElementById('kenmerk').addEventListener('change', (e) => {
     sorteerBoekObj.kenmerk = e.target.value;
     sorteerBoekObj.voegJSdatumIn();
     sorteerBoekObj.sorteren();
-})
+});
 
+document.getElementsByName('oplopend').forEach((item) => {
+    item.addEventListener('click', (e) => {
+        sorteerBoekObj.oplopend = parseInt(e.target.value);
+        sorteerBoekObj.sorteren();
+    })
+})
 
 //Json Importeren
 let xmlhttp = new XMLHttpRequest();
@@ -71,6 +77,19 @@ const maakJSdatum = (maandJaar) => {
     return datum;
 }
 
+// Functie maakt van een Array een opsomming
+const maakOpsomming = (array) => {
+    let string = "";
+    for (let i=0; i<array.length; i++){
+        switch (i) {
+            case array.length-1 : string += array[i]; break;
+            case array.length-2 : string += array[i] + " en "; break
+            default: string += array[i] + ", ";
+        }
+    }
+    return string;
+}
+
 //Object
 //Eigenschappen object: Data
 //Method:               Sorteren() en Uitvoeren()
@@ -78,6 +97,8 @@ let sorteerBoekObj = {
     data: "",
 
     kenmerk: "titel",
+
+    oplopend: 1,
 
     // een datumObject
     voegJSdatumIn: function () {
@@ -88,7 +109,7 @@ let sorteerBoekObj = {
     },
 
     sorteren: function() {
-        this.data.sort( (a,b) => a[this.kenmerk] > b[this.kenmerk] ? 1 : -1);
+        this.data.sort( (a,b) => a[this.kenmerk] > b[this.kenmerk] ? 1*this.oplopend : -1*this.oplopend);
         this.uitvoeren(this.data);
     },
 
@@ -99,9 +120,13 @@ let sorteerBoekObj = {
             let accent = false;
             i%2 == 0 ? accent = true : accent = false;
             let imgElement = "<img src='" + data[i].cover + "' class='boekSelectie__cover' '" + data[i].titel + "'>";
-            uitvoer += maakTabelRij([data[i].titel, data[i].auteur[0], imgElement, data[i].uitgave, data[i].paginas, data[i].taal, data[i].ean], accent);
+            // Maak opsomming van de auteurs
+            let auteurs = maakOpsomming(data[i].auteur);
+            uitvoer += maakTabelRij([data[i].titel, auteurs, imgElement, data[i].uitgave, data[i].paginas, data[i].taal, data[i].ean], accent);
         }
 
-        document.getElementById('uitvoer').innerHTML = uitvoer
+        document.getElementById('uitvoer').innerHTML = uitvoer;
     }
 }
+
+//keuze
