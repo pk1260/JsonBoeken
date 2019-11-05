@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
+<div class="center">
 <h1>Een selectie van boeken</h1>
 <select id="kenmerk">
     <option value="titel" selected>titel</option>
@@ -16,7 +17,11 @@
     <option value="paginas">bladzijden</option>
     <option value="taal">taal</option>
 </select>
+    <!--Radiobuttons-->
+    <label><input type="radio" name="oplopend" value="1">Oplopend</label>
+    <label><input type="radio" name="oplopend" value="-1">Aflopend</label>
 <div id="uitvoer"></div>
 <script src="sorteerBoeken.js"></script>
+</div>
 </body>
 </html>
