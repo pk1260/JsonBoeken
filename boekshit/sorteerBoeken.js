@@ -17,9 +17,13 @@ let xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if(this.readyState == 4 && this.status == 200) {
         sorteerBoekObj.data = JSON.parse(this.responseText);
+        //De data moet ook een eigenschap hebben waarbij de titels in kapitalen staan
+        sorteerBoekObj.data.forEach( boek => {
+            boek.titelUpper = boek.titel.toUpperCase();
+            // Ook de Naam van de auteur
+            boek.sortAuteur = boek.auteur[0];
+        })
         sorteerBoekObj.sorteren();
-    } else {
-
     }
 }
 xmlhttp.open('GET', "boeken.json", true);
@@ -34,20 +38,6 @@ const maakTabelKop = (arr) => {
     kop += "</tr>";
     return kop;
 };
-// MaakTabel
-// const maakTabelRij = (arr, accent) => {
-//     let rij = "";
-//     if (accent == true) {
-//         rij = "<tr class='boekSelectie__rij--accent'>";
-//     } else {
-//         rij = "<tr class='boekSelectie__rij'>";
-//     }
-//     arr.forEach((item) => {
-//         rij += "<td class='boekSelectie__data-cel'>" + item + "</td>";
-//     });
-//     rij += "</tr>";
-//     return rij;
-// };
 
 const geefMaandNummer= (maand) => {
     let number;
@@ -90,13 +80,22 @@ const maakOpsomming = (array) => {
     return string;
 }
 
+const keerTekstOm = (string) => {
+    if(string.indexOf(',') != -1) {
+        let array = string.split(',');
+        string = array[1] + ' ' + array[0];
+    }
+
+    return string;
+}
+
 //Object
 //Eigenschappen object: Data
 //Method:               Sorteren() en Uitvoeren()
 let sorteerBoekObj = {
     data: "",
 
-    kenmerk: "titel",
+    kenmerk: "titelUpper",
 
     oplopend: 1,
 
@@ -114,34 +113,53 @@ let sorteerBoekObj = {
     },
     // Data in een tabel uitvoeren
     uitvoeren: function (data) {
-        /*
-        let uitvoer = maakTabelKop(["titel", "auteur(s)", "cover", "uitgave", "bladzijden", "taal", "ean"]);
-
-        for(let i=0; i<data.length; i++) {
-            let accent = false;
-            i%2 == 0 ? accent = true : accent = false;
-            let imgElement = "<img src='" + data[i].cover + "' class='boekSelectie__cover' '" + data[i].titel + "'>";
-            // Maak opsomming van de auteurs
-            let auteurs = maakOpsomming(data[i].auteur);
-            uitvoer += maakTabelRij([data[i].titel, auteurs, imgElement, data[i].uitgave, data[i].paginas, data[i].taal, data[i].ean], accent);
-        }
-
-        document.getElementById('uitvoer').innerHTML = uitvoer;
-
-         */
-
+        document.getElementById('uitvoer').innerHTML = "";
         data.forEach(boek => {
+            // document.getElementById('uitvoer').innerHTML = "";
             let sectie = document.createElement('section');
-            sectie.className = 'boek';
+            sectie.className = 'boekSelectie';
+
+            // Main Ele met alle info
+            let main = document.createElement('main');
+            main.className = 'boekSelectie__main';
 
             // Cover maken (Afbeelding)
             let afbeelding = document.createElement('img');
             afbeelding.className = 'boekSelectie__cover';
             afbeelding.setAttribute('src', boek.cover);
-            afbeelding.setAttribute('alt', boek.titel);
+            afbeelding.setAttribute('alt', keerTekstOm(boek.titel));
+
+            // Titel maken
+            let titel = document.createElement('h3');
+            titel.className = 'boek__titel';
+            titel.textContent = keerTekstOm(boek.titel);
+
+            // Auteurs
+            let auteurs = document.createElement('p');
+            auteurs.className = 'boekSelectie__auteurs';
+            // De voor en achternaam van de eerste auteur
+            boek.auteur[0] = keerTekstOm(boek.auteur[0]);
+            // Auteurs staan in een array: deze omzetten naar nederlandse string
+            auteurs.textContent = maakOpsomming(boek.auteur);
+
+            // Overige info
+            let overig = document.createElement('p');
+            overig.className = 'boekSelectie__overig';
+            overig.textContent = boek.uitgave+' | aantal pagina\'s '+boek.paginas+' | '+boek.taal+' | ean: '+boek.ean;
+
+            // Prijs maken
+            let prijs = document.createElement('div');
+            prijs.className = 'boekSelectie__prijs';
+            // https://www.freeformatter.com/netherlands-standards-code-snippets.html
+            prijs.textContent = boek.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'});
 
             // De elementen toevoegen
             sectie.appendChild(afbeelding);
+            main.appendChild(titel);
+            main.appendChild(auteurs);
+            main.appendChild(overig);
+            sectie.appendChild(main);
+            sectie.appendChild(prijs);
             document.getElementById('uitvoer').appendChild(sectie);
         })
     }
