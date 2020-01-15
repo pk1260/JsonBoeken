@@ -1,3 +1,27 @@
+body {
+    font-family: Roboto;
+}
+.winkelwagen {
+    width: 3em;
+    height: 3em;
+    background-image: url("img/shopping-cart.png");
+    background-size: contain;
+    float: right;
+    margin-right: 3em;
+    position: relative;
+}
+
+.winkelwagen__aantal:not(:empty) {
+    background-color: #f00;
+    display: inline-block;
+    color: #fff;
+    position: absolute;
+    top: -.5em;
+    right: -.9em;
+    line-height: .5em;
+    padding: .5em;
+    border-radius: 50%;
+}
 .boekSelectie__cover {
     max-width: 100px;
 }
