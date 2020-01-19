@@ -9,6 +9,7 @@ body {
     float: right;
     margin-right: 3em;
     position: relative;
+    cursor: pointer;
 }
 
 .winkelwagen__aantal:not(:empty) {

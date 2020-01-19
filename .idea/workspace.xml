@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="173974e0-e2b3-4a96-883a-42a92723f0ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/boeksorteren/bestelpagina.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/boeksorteren/bestelpagina.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boeksorteren/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/boeksorteren/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/boeksorteren/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/boeksorteren/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/boeksorteren/sorteerBoeken.js" beforeDir="false" afterPath="$PROJECT_DIR$/boeksorteren/sorteerBoeken.js" afterDir="false" />
     </list>
@@ -20,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -35,7 +39,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/boeksorteren" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -43,6 +47,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\JsonBoeken\boeksorteren" />
       <recent name="$PROJECT_DIR$/boekshit" />
     </key>
   </component>
@@ -74,7 +79,7 @@
       <workItem from="1574774734196" duration="5744000" />
       <workItem from="1575379436127" duration="764000" />
       <workItem from="1579013206288" duration="1047000" />
-      <workItem from="1579466342555" duration="1634000" />
+      <workItem from="1579466342555" duration="2132000" />
     </task>
     <servers />
   </component>

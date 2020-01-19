@@ -91,8 +91,11 @@ const keerTekstOm = (string) => {
 
 // Een winkelwagenobject deze
 // 1. Toegevoegde items bevat
-// 2. Method om toe te voegen
-// 3. Method om items te verwijderen
+// 2. Method om data om te halen uit localStorage
+// 3. Method om toe te voegen
+// 4. Method om items te verwijderen
+// 5. Method om items te uit te voeren
+
 let winkelwagen = {
     items: [],
     haalItemsOp: function() {
@@ -111,8 +114,14 @@ let winkelwagen = {
         this.items.push(el);
         localStorage.setItem('besteldeBoeken', JSON.stringify(this.items));
         document.querySelector('.winkelwagen__aantal').innerHTML = this.items.length;
+    },
+
+    uitvoeren: function () {
+
     }
+
 }
+
 winkelwagen.haalItemsOp();
 
 //Object dat de boeken uitvoert en sorteert
