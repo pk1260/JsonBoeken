@@ -73,6 +73,23 @@ body {
     padding: .5em;
 }
 
+.boekSelectie__knop {
+    display: block;
+    margin: 1.5em auto;
+    background-color: #d00;
+    cursor: pointer;
+    color: #fff;
+    padding: 1em;
+    border-radius: 1em;
+}
+.boekSelectie__knop:hover {
+    background-color: #900;
+}
+
+.winkelwagen__aantal {
+
+}
+
 @media screen and (min-width: 50em) {
     #uitvoer {
         display: grid;

@@ -89,11 +89,37 @@ const keerTekstOm = (string) => {
     return string;
 }
 
-//Object
-//Eigenschappen object: Data
-//Method:               Sorteren() en Uitvoeren()
+// Een winkelwagenobject deze
+// 1. Toegevoegde items bevat
+// 2. Method om toe te voegen
+// 3. Method om items te verwijderen
+let winkelwagen = {
+    items: [],
+    haalItemsOp: function() {
+        let bestelling;
+        if (localStorage.getItem('besteldeBoeken') == null ) {
+            bestelling = [];
+        } else {
+            bestelling = JSON.parse(localStorage.getItem('besteldeBoeken'));
+            document.querySelector('.winkelwagen__aantal').innerHTML = bestelling.length;
+        }
+        return bestelling;
+    },
+
+    toevoegen: function(el){
+        this.items = this.haalItemsOp()
+        this.items.push(el);
+        localStorage.setItem('besteldeBoeken', JSON.stringify(this.items));
+        document.querySelector('.winkelwagen__aantal').innerHTML = this.items.length;
+    }
+}
+winkelwagen.haalItemsOp();
+
+//Object dat de boeken uitvoert en sorteert
+//Eigenschappen object: Data (sorteer)kenmerk
+//Method: Sorteren() en Uitvoeren()
 let sorteerBoekObj = {
-    data: "",
+    data: "", // Komt van xmlhttp.onreadystatechange
 
     kenmerk: "titelUpper",
 
@@ -153,16 +179,25 @@ let sorteerBoekObj = {
             // https://www.freeformatter.com/netherlands-standards-code-snippets.html
             prijs.textContent = boek.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'});
 
+            // Knop toevoegen bij de prijs
+            let knop = document.createElement('button');
+            knop.className = 'boekSelectie__knop';
+            knop.innerHTML = 'voeg toe aan<br>winkelwagen';
+            knop.addEventListener('click', () => {
+                winkelwagen.toevoegen(boek);
+            })
+
             // De elementen toevoegen
             sectie.appendChild(afbeelding);
             main.appendChild(titel);
             main.appendChild(auteurs);
             main.appendChild(overig);
             sectie.appendChild(main);
+            prijs.appendChild(knop);
             sectie.appendChild(prijs);
             document.getElementById('uitvoer').appendChild(sectie);
         })
     }
 }
 
-//keuze
+//
