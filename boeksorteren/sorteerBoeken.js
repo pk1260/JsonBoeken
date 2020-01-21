@@ -81,7 +81,7 @@ const keerTekstOm = (string) => {
 // 1. Toegevoegde items bevat
 // 2. Method om data om te halen uit localStorage
 // 3. Method om toe te voegen
-// 4. Method om items te verwijderen
+// 4. Method om de winkelwagen aantel bij te werken
 // 5. Method om items te uit te voeren
 
 let winkelwagen = {
@@ -93,6 +93,7 @@ let winkelwagen = {
         } else {
             bestelling = JSON.parse(localStorage.getItem('besteldeBoeken'));
             document.querySelector('.winkelwagen__aantal').innerHTML = bestelling.length;
+            this.uitvoeren();
         }
         return bestelling;
     },
@@ -102,10 +103,15 @@ let winkelwagen = {
         this.items.push(el);
         localStorage.setItem('besteldeBoeken', JSON.stringify(this.items));
         document.querySelector('.winkelwagen__aantal').innerHTML = this.items.length;
+        this.uitvoeren();
     },
 
     uitvoeren: function () {
-
+        if(this.items.length > 0) {
+            document.querySelector('.winkelwagen__aantal').innerHTML = this.items.length;
+        } else {
+            document.querySelector('.winkelwagen__aantal').innerHTML = "";
+        }
     }
 
 }

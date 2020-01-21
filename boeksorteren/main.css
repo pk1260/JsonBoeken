@@ -86,7 +86,12 @@ body {
 .boekSelectie__knop:hover {
     background-color: #900;
 }
-
+@media screen and (min-width: 40em) {
+    .besteldBoek {
+        max-width: 40em;
+        margin: 0 auto;
+    }
+}
 @media screen and (min-width: 50em) {
     #uitvoer {
         display: grid;
@@ -106,7 +111,7 @@ body {
 /*BestelPagina*/
 .besteldBoek {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     grid-gap: 2em;
     margin-bottom: .5em;
 }
@@ -122,10 +127,12 @@ body {
 .besteldBoek__verwijder {
     width: 2em;
     height: 2em;
-    background-image: url("img/");
+    background-image: url("img/bin.png");
     background-size: cover;
     cursor: pointer;
     border-radius: .5em;
+    background-color: transparent;
+    transition: background-color 1s ease-out;
 }
 
 .besteldBoek__verwijder:hover {

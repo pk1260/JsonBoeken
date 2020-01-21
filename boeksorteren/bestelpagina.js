@@ -57,9 +57,25 @@ let winkelwagen = {
         })
         return bestelling;
     },
+    // Doorloop alle items en als de ean van het item overeenstemt dit uit de items te verwijderen
+    verwijderItem: function (ean) {
+        this.items.forEach((item,index) => {
+            if(item.ean == ean) {
+                this.items.splice(index,1)
+            }
+        })
+        // Local storage bijwerken
+        localStorage.setItem('besteldeBoeken', JSON.stringify(this.items));
+        if (this.items.length>0) {
+            document.querySelector('.winkelwagen__aantal').innerHTML = this.items.length;
+        } else {
+            document.querySelector('.winkelwagen__aantal').innerHTML = "";
+        }
+        this.uitvoeren();
+    },
 
     uitvoeren: function () {
-        document.getElementById('uitvoer').innerHTML = "";
+        document.getElementById('bestelling').innerHTML = "";
         this.items.forEach(boek => {
             // document.getElementById('uitvoer').innerHTML = "";
             let sectie = document.createElement('section');
@@ -85,14 +101,16 @@ let winkelwagen = {
             // verwijder knop
             let verwijder = document.createElement('div');
             verwijder.className = 'besteldBoek__verwijder';
-            verwijder.
+            verwijder.addEventListener('click', () => {
+                this.verwijderItem(boek.ean);
+            })
 
             // De elementen toevoegen
             sectie.appendChild(afbeelding);
             sectie.appendChild(titel);
             sectie.appendChild(prijs);
             sectie.appendChild(verwijder);
-            document.getElementById('uitvoer').appendChild(sectie);
+            document.getElementById('bestelling').appendChild(sectie);
         });
     }
 }
