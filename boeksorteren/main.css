@@ -87,10 +87,6 @@ body {
     background-color: #900;
 }
 
-.winkelwagen__aantal {
-
-}
-
 @media screen and (min-width: 50em) {
     #uitvoer {
         display: grid;
@@ -105,4 +101,33 @@ body {
     .boekSelectie:nth-child(4n+3){
         background-color: #eee;
     }
+}
+
+/*BestelPagina*/
+.besteldBoek {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 2em;
+    margin-bottom: .5em;
+}
+.besteldBoek__cover {
+    max-width: 50px;
+}
+
+.besteldBoek__titel {
+    font-weight: normal;
+    font-size: 1em;
+}
+
+.besteldBoek__verwijder {
+    width: 2em;
+    height: 2em;
+    background-image: url("img/");
+    background-size: cover;
+    cursor: pointer;
+    border-radius: .5em;
+}
+
+.besteldBoek__verwijder:hover {
+    background-color: #f66;
 }

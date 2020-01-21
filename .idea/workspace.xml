@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="173974e0-e2b3-4a96-883a-42a92723f0ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/boeksorteren/bestelpagina.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/boeksorteren/bestelpagina.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boeksorteren/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/boeksorteren/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boeksorteren/bestelpagina.html" beforeDir="false" afterPath="$PROJECT_DIR$/boeksorteren/bestelpagina.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boeksorteren/bestelpagina.js" beforeDir="false" afterPath="$PROJECT_DIR$/boeksorteren/bestelpagina.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/boeksorteren/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/boeksorteren/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/boeksorteren/sorteerBoeken.js" beforeDir="false" afterPath="$PROJECT_DIR$/boeksorteren/sorteerBoeken.js" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,15 +51,15 @@
       <recent name="$PROJECT_DIR$/boekshit" />
     </key>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
+  <component name="RunDashboard">
+    <option name="ruleStates">
       <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
       </list>
     </option>
   </component>
@@ -80,6 +80,7 @@
       <workItem from="1575379436127" duration="764000" />
       <workItem from="1579013206288" duration="1047000" />
       <workItem from="1579466342555" duration="2132000" />
+      <workItem from="1579615030514" duration="2221000" />
     </task>
     <servers />
   </component>

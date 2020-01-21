@@ -1,17 +1,3 @@
-//keuze sorteer
-document.getElementById('kenmerk').addEventListener('change', (e) => {
-    sorteerBoekObj.kenmerk = e.target.value;
-    sorteerBoekObj.voegJSdatumIn();
-    sorteerBoekObj.sorteren();
-});
-
-document.getElementsByName('oplopend').forEach((item) => {
-    item.addEventListener('click', (e) => {
-        sorteerBoekObj.oplopend = parseInt(e.target.value);
-        sorteerBoekObj.sorteren();
-    })
-})
-
 //Json Importeren
 let xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
@@ -61,6 +47,7 @@ const geefMaandNummer= (maand) => {
     return number;
 }
 
+// Functie die een string van maand jaar omzet in een date-object
 const maakJSdatum = (maandJaar) => {
     let mjArray = maandJaar.split(" ");
     let datum = new Date(mjArray[1], geefMaandNummer(mjArray[0]));
@@ -80,6 +67,7 @@ const maakOpsomming = (array) => {
     return string;
 }
 
+//Maakt een functie die de tekst achter de komma vooraan plaatst
 const keerTekstOm = (string) => {
     if(string.indexOf(',') != -1) {
         let array = string.split(',');
@@ -209,4 +197,19 @@ let sorteerBoekObj = {
     }
 }
 
-//
+
+winkelwagen.haalItemsOp();
+winkelwagen.uitvoeren();
+//keuze sorteer
+document.getElementById('kenmerk').addEventListener('change', (e) => {
+    sorteerBoekObj.kenmerk = e.target.value;
+    sorteerBoekObj.voegJSdatumIn();
+    sorteerBoekObj.sorteren();
+});
+
+document.getElementsByName('oplopend').forEach((item) => {
+    item.addEventListener('click', (e) => {
+        sorteerBoekObj.oplopend = parseInt(e.target.value);
+        sorteerBoekObj.sorteren();
+    })
+})
