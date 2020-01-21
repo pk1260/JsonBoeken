@@ -1,6 +1,15 @@
 body {
     font-family: Roboto;
 }
+
+.header {
+    position: sticky;
+    top: 0;
+    margin: 0;
+    padding: .3em;
+    background-color: #fff;
+}
+
 .winkelwagen {
     width: 3em;
     height: 3em;
@@ -140,6 +149,14 @@ body {
     background-color: #f66;
 }
 
-besteldBoek__totaal-prijs {
+.besteldBoek__totaal-tekst {
+    grid-column: 2;
+    text-align: right;
+    padding-top: .4em;
+}
 
+.besteldBoek__totaal-prijs {
+    grid-column: 3;
+    border-top: solid 2px grey;
+    padding-top: .3em;
 }

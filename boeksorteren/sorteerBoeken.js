@@ -92,7 +92,9 @@ let winkelwagen = {
             bestelling = [];
         } else {
             bestelling = JSON.parse(localStorage.getItem('besteldeBoeken'));
-            document.querySelector('.winkelwagen__aantal').innerHTML = bestelling.length;
+            bestelling.forEach(item => {
+                this.items.push(item);
+            })
             this.uitvoeren();
         }
         return bestelling;
