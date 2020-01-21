@@ -117,6 +117,7 @@ body {
 }
 .besteldBoek__cover {
     max-width: 50px;
+    padding-bottom: .5em;
 }
 
 .besteldBoek__titel {
@@ -137,4 +138,8 @@ body {
 
 .besteldBoek__verwijder:hover {
     background-color: #f66;
+}
+
+besteldBoek__totaal-prijs {
+
 }

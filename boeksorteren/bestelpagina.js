@@ -40,7 +40,7 @@ const keerTekstOm = (string) => {
 // 3. Method om toe te voegen
 // 4. Method om items te verwijderen
 // 5. Method om items te uit te voeren
-
+// 6. Method om totaalprijs
 let winkelwagen = {
     items: [],
 
@@ -51,6 +51,7 @@ let winkelwagen = {
         } else {
             bestelling = JSON.parse(localStorage.getItem('besteldeBoeken'));
             document.querySelector('.winkelwagen__aantal').innerHTML = bestelling.length;
+            this.uitvoeren();
         }
         bestelling.forEach(item => {
             this.items.push(item);
@@ -62,6 +63,8 @@ let winkelwagen = {
         this.items.forEach((item,index) => {
             if(item.ean == ean) {
                 this.items.splice(index,1)
+                ean = 4;
+
             }
         })
         // Local storage bijwerken
@@ -72,6 +75,14 @@ let winkelwagen = {
             document.querySelector('.winkelwagen__aantal').innerHTML = "";
         }
         this.uitvoeren();
+    },
+
+    totaalPrijsBerekenen: function() {
+        let totaal = 0;
+        this.items.forEach( boek => {
+            totaal += boek.prijs;
+        });
+        return totaal;
     },
 
     uitvoeren: function () {
@@ -112,6 +123,29 @@ let winkelwagen = {
             sectie.appendChild(verwijder);
             document.getElementById('bestelling').appendChild(sectie);
         });
+
+        // Totaalprijs show
+        let sectie = document.createElement('section');
+        sectie.className = 'besteldBoek';
+        //
+        let totaalTekst = document.createElement('div');
+        totaalTekst.className = 'besteldBoek__totaal-tekst';
+        totaalTekst.innerHTML = 'Totaal: ';
+
+        let totaalPrijs = document.createElement('div');
+        totaalTekst.className = 'besteldBoek__totaal-prijs';
+        totaalPrijs.textContent = this.totaalPrijsBerekenen().toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'});
+
+        sectie.appendChild(totaalTekst);
+        sectie.appendChild(totaalPrijs);
+        document.getElementById('bestelling').appendChild(sectie);
+
+        // Winkelwagen aantal uitvoeren
+        if(this.items.length > 0) {
+            document.querySelector('.winkelwagen__aantal').innerHTML = this.items.length;
+        } else {
+            document.querySelector('.winkelwagen__aantal').innerHTML = "";
+        }
     }
 }
 
